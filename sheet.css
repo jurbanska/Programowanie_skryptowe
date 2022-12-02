@@ -1,0 +1,109 @@
+header {
+    margin-bottom: 10px;
+    height: 50px;
+}
+
+header h1 {
+    margin: 5px;
+}
+
+nav {
+    margin-bottom: 10px;
+    clear: left;
+    float: left;
+}
+
+aside  {
+    clear: right;
+    float: right;
+    width: 400px;
+    margin-bottom: 10px;
+}
+aside h2{
+    margin: 0 10px;
+}
+
+aside h1{
+    margin: 0 10px;
+    animation: red_blue 3s infinite;
+    animation-direction: alternate;
+}
+
+main {
+    text-align: left;
+    margin-bottom: 5px;
+    clear: left;
+    float: left;
+}
+
+footer {
+    clear: both;
+}
+
+.azure {
+    background-color: #EFF;
+}
+
+.borders {
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 0 4px 1px #A8A8A8;
+}
+
+.margins {
+    margin-left: 10px;
+    margin-right: 10px ;
+}
+
+.headerssize {
+    font-size: 35px;
+}
+
+@keyframes red_blue {
+    from {
+        color: red;
+    }
+    to {
+        color: blue;
+    }
+}
+
+@media screen and (min-width: 300px) and (max-width: 850px) {
+    header {
+        float: none;
+        width: auto;
+    }
+
+    nav {
+        float: none;
+        width: auto;
+    }
+
+    aside {
+        float: none;
+        width: auto;
+    }
+
+    main {
+        float: none;
+        width: auto;
+    }
+
+    footer {
+        float: none;
+        width: auto;
+    }
+
+    main pre {
+        font-size: 2.5vmin;
+    }
+
+    footer, nav ul, aside ul {
+        font-size: 4vm;
+    }
+
+    header h1, aside h1, aside h2, main h1 {
+        font-size: 6vm;
+    }
+}
