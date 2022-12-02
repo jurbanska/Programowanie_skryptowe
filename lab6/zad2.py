@@ -1,0 +1,1 @@
+from collections import Counter; import sys; print(dict(Counter(map(len, sys.stdin.read().split()))))
