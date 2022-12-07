@@ -1,0 +1,32 @@
+.picture-animation {
+    animation: movement 35s infinite;
+
+}
+
+@keyframes movement {
+    0% { transform: skew(0deg) translateX(0); }
+
+    8% { transform: skew(10deg, 30deg) translateX(-70px); }
+
+    16% { transform: skew(-10deg, -30deg) translateX(-140px); }
+
+    24% { transform: skew(0deg, 0deg) translateX(-70px); }
+
+    32% { transform: skew(10deg, 30deg) translateX(0px); }
+
+    40% { transform: skew(-10deg, -30deg) translateX(70px); }
+
+    48% { transform: skew(0deg, 0deg) translateX(0px); }
+
+    56% { transform: skew(-10deg, -30deg) translateX(70px); }
+
+    64% { transform: skew(10deg, 30deg) translateX(140px); }
+
+    72% { transform: skew(0deg, 0deg) translateX(70px); }
+
+    81% { transform: skew(-10deg, -30deg) translateX(0px); }
+
+    90% { transform: skew(10deg, 30deg) translateX(-70px); }
+
+    100% { transform: skew(0deg, 0deg) translateX(0px); }
+}

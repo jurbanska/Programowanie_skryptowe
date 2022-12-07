@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Zad 1</title>
+  </head>
+
+  <body onLoad="
+            console.log('Tekst 1');
+            window.alert('Tekst 2');
+          ">
+
+    <div>Treść dokumentu HTML</div>
+    <div>Treść dokumentu HTML</div>
+    <div>Treść dokumentu HTML</div>
+
+    <script>
+      console.log(typeof (window.prompt("Tekst1","Tekst2"))); /* nie są obowiązkowe tekst1 pojawia się jako tytuł przed wpisaniem wartości
+                                              w okienko, a tekst 2 jako przykładowy tekst wpisany w okienko
+                                              typeof liczba -> string
+                                              typeof string -> string
+                                              typeof + none -> string
+                                              typeof + cancel -> object  */
+
+    </script>
+
+    <form>
+      <script src="script.js"></script>
+      <input name="pole_tekstowe" type="text">
+      <input name="pole_liczbowe" type="number">
+      <input type="button" value="Wypisz" onclick="wypisz()">
+    </form>
+
+  </body>
+</html>

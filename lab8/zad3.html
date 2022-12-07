@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Page title</title>
+</head>
+<body>
+<main>
+  <h1>
+    Płótno
+  </h1>
+
+  <h1>
+    Canvas
+  </h1>
+
+  <canvas id="canvas" width="200" height="300" style="border: 1px solid #000;">
+    It looks like your browser does not support the "canvas" element
+  </canvas>
+
+  <script>
+    let canvas = document.getElementById('canvas');
+    let ctx = canvas.getContext('2d');
+
+
+    ctx.font = '18px Georgia'
+    ctx.strokeText('Wypożyczalnia Bicykl!',15,140);
+
+    ctx.beginPath();
+    ctx.arc(80, 50, 40, 0, 2 * Math.PI);
+
+    ctx.moveTo(160, 50);
+
+    ctx.arc(120, 50, 40, 0, 2 * Math.PI);
+
+    ctx.moveTo(120, 190);
+    ctx.arc(100, 190, 20, 0, 2 * Math.PI);
+
+    ctx.moveTo(100, 210);
+    ctx.lineTo(100, 250);
+    ctx.lineTo(120, 280);
+
+    ctx.lineTo(80, 280);
+    ctx.lineTo(100, 250);
+    ctx.lineTo(100, 240);
+    ctx.lineTo(120, 220);
+    ctx.lineTo(100, 240);
+    ctx.lineTo(80, 220);
+
+    ctx.stroke();
+
+  </script>
+</main>
+</body>
+</html>
