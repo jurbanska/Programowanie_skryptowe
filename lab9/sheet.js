@@ -7,10 +7,6 @@ function add() {
     const aside_h1Style = document.querySelector('aside h1');
     const mainStyle = document.querySelector('main');
     const footerStyle = document.querySelector('footer');
-    const azureStyle = document.querySelectorAll(".azure");
-    const bordersStyle = document.querySelectorAll(".borders");
-    const marginsStyle = document.querySelectorAll(".margins");
-    const headerssizeStyle = document.querySelectorAll(".headerssize");
 
 
     asideStyle.style.cssText = 'clear: right; float: right; width: 400px; margin-bottom: 10px;'
@@ -22,23 +18,35 @@ function add() {
     mainStyle.style.cssText = 'text-align: left; margin-bottom: 5px; clear: left; float: left;'
     footerStyle.style.cssText = 'clear: both;'
 
-    for (let i = 0; i < azureStyle.length; i++) {
+
+    let azureStyle = document.getElementsByClassName('azure')
+    for (let i = 0; i < azureStyle .length; i++) {
         azureStyle[i].style.backgroundColor = 'azure';
     }
+
+    let bordersStyle = document.getElementsByClassName("borders");
     for (let i = 0; i < bordersStyle.length; i++) {
         bordersStyle[i].style.borderWidth = 'thin';
         bordersStyle[i].style.borderStyle = 'solid';
         bordersStyle[i].style.borderColor = 'black';
         bordersStyle[i].style.boxShadow = '0px 0px 2px 1px grey';
     }
+
+    let marginsStyle = document.getElementsByClassName("margins");
     for (let i = 0; i < marginsStyle.length; i++) {
         marginsStyle[i].style.marginLeft = '10px';
         marginsStyle[i].style.marginRight = '10px';
     }
+
+    let headerssizeStyle = document.getElementsByClassName('headerssize')
     for (let i = 0; i < headerssizeStyle.length; i++) {
         headerssizeStyle[i].style.fontSize = '35px'
     }
+
+
 }
+
+
 
     function remove(){
         const asideStyle = document.querySelector('aside');
@@ -49,10 +57,6 @@ function add() {
         const aside_h1Style = document.querySelector('aside h1');
         const mainStyle = document.querySelector('main');
         const footerStyle = document.querySelector('footer');
-        const azureStyle = document.querySelectorAll(".azure");
-        const bordersStyle = document.querySelectorAll(".borders");
-        const marginsStyle = document.querySelectorAll(".margins");
-        const headerssizeStyle = document.querySelectorAll(".headerssize");
 
 
         asideStyle.style.cssText = ''
@@ -64,19 +68,27 @@ function add() {
         mainStyle.style.cssText = ''
         footerStyle.style.cssText = ''
 
-        for (let i = 0; i < azureStyle.length; i++) {
+
+        let azureStyle = document.getElementsByClassName('azure')
+        for (let i = 0; i < azureStyle .length; i++) {
             azureStyle[i].style.backgroundColor = '';
         }
+
+        let bordersStyle = document.getElementsByClassName("borders");
         for (let i = 0; i < bordersStyle.length; i++) {
             bordersStyle[i].style.borderWidth = '';
             bordersStyle[i].style.borderStyle = '';
             bordersStyle[i].style.borderColor = '';
             bordersStyle[i].style.boxShadow = '';
         }
+
+        let marginsStyle = document.getElementsByClassName("margins");
         for (let i = 0; i < marginsStyle.length; i++) {
             marginsStyle[i].style.marginLeft = '';
             marginsStyle[i].style.marginRight = '';
         }
+
+        let headerssizeStyle = document.getElementsByClassName('headerssize')
         for (let i = 0; i < headerssizeStyle.length; i++) {
             headerssizeStyle[i].style.fontSize = ''
         }
