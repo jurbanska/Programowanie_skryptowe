@@ -1,0 +1,53 @@
+<html lang="eng">
+    <head>
+        <title>Counter Form</title>
+    </head>
+
+    <body>
+        <form>
+            <label>
+                <input type="text" name="counter" value="10" />
+            </label>
+            <span>0</span>
+            <span>0</span>
+            <span>0</span>
+            <span>0</span>
+            <span>0</span>
+            <span>0</span>
+            <span>0</span>
+            <span>0</span>
+        </form>
+
+
+    <script>
+        let counter = document.querySelector('input[name="counter"]').value || 10;
+        /*This line is getting the value of the input with the name "counter" and assigning it to the variable counter.
+        If the input is empty, it will assign 10 to the variable.*/
+
+        setInterval(() => {
+            /*This line is setting an interval to run the code inside the brackets every 1000 milliseconds (1 second).*/
+            if(counter > 0){
+                counter--;
+                document.querySelector('input[name="counter"]').value = counter;
+                document.querySelectorAll('span').forEach(span => {
+                    span.innerHTML = counter;
+                });
+            }
+            else {
+                counter=document.querySelector('input[name="counter"]').value || 0;
+                document.querySelector('input[name="counter"]').value = counter;
+                document.querySelectorAll('span').forEach(span => {
+                    span.innerHTML = counter;
+                });
+            }
+        }, 1000);
+
+        /*This code is checking if the counter is greater than 0. If it is, it will subtract 1 from the counter and set
+        the value of the input and all the spans to the new counter value. If the counter is not greater than 0, it
+        will set the counter to the value of the input or 0, and set the value of the input and all the spans to the
+        new counter value.*/
+    </script>
+
+    </body>
+</html>
+
