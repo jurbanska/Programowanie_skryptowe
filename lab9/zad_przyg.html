@@ -1,0 +1,125 @@
+<html>
+<head>
+  <title> Bike Rental </title>
+  <script>
+
+    let bikes = [];
+    let scooters = [];
+    let rentedBikes = [];
+    let rentedScooters = [];
+
+    function addBike(brand, numBikes) {
+      for (let i = 0; i < numBikes; i++) {
+        let bike = {
+          brand: brand,
+          takenBy: null
+        }
+        bikes.push(bike);
+      }
+    }
+
+    function addScooter(brand, numScooters) {
+      for (let i = 0; i < numScooters; i++) {
+        let scooter = {
+          brand: brand,
+          takenBy: null
+        }
+        scooters.push(scooter);
+      }
+    }
+
+    function rentBike(name, brand) {
+      for (let i = 0; i < bikes.length; i++) {
+        if (bikes[i].brand === brand && bikes[i].takenBy === null) {
+          bikes[i].takenBy = name;
+          rentedBikes.push(bikes[i]);
+          console.log(name + " has rented a " + brand + " bike.");
+          break;
+        }
+      }
+    }
+
+    function rentScooter(name, brand) {
+      for (let i = 0; i < scooters.length; i++) {
+        if (scooters[i].brand === brand && scooters[i].takenBy === null) {
+          scooters[i].takenBy = name;
+          rentedScooters.push(scooters[i]);
+          console.log(name + " has rented a " + brand + " scooter.");
+          break;
+        }
+      }
+    }
+
+    function returnBike(name) {
+      for (let i = 0; i < rentedBikes.length; i++) {
+        if (rentedBikes[i].takenBy === name) {
+          let bike = rentedBikes.splice(i, 1);
+          bike[0].takenBy = null;
+          bikes.push(bike[0]);
+          console.log(name + " has returned the " + bike[0].brand + " bike.");
+          break;
+        }
+      }
+    }
+
+    function returnScooter(name) {
+      for (let i = 0; i < rentedScooters.length; i++) {
+        if (rentedScooters[i].takenBy === name) {
+          let scooter = rentedScooters.splice(i, 1);
+          scooter[0].takenBy = null;
+          scooters.push(scooter[0]);
+          console.log(name + " has returned the " + scooter[0].brand + " scooter.");
+          break;
+        }
+      }
+    }
+
+    function showRenters() {
+      let renters = [];
+      for (let i = 0; i < rentedBikes.length; i++) {
+        renters.push(rentedBikes[i].takenBy);
+      }
+      for (let i = 0; i < rentedScooters.length; i++) {
+        renters.push(rentedScooters[i].takenBy);
+      }
+      console.log("Renters: " + renters);
+    }
+
+    // Initialize the bike rental
+    addBike("Hiland", 10);
+    addBike("Indiana", 50);
+    addScooter("JIVR", 5);
+
+    // Handle commands
+    function submitButton () {
+      let cmd =  document.getElementById("command").value;
+      let cmds = cmd.split(" ");
+      if (cmds[0] === "rent") { //renting -> choose bike/scooter
+        let name = cmds[1];
+        let type = cmds[2];
+        let brand = cmds[3];
+        if (type === "bike") {
+          rentBike(name, brand);
+        }
+        else if (type === "scooter") {
+          rentScooter(name, brand);
+        }
+      }
+      else if (cmds[0] === "return") { // returning vehicle + name
+        let name = cmds[1];
+        returnBike(name);
+        returnScooter(name);
+      } else if (cmds[0] === "show"){ // showing renters
+        showRenters();
+      }
+    }
+
+
+
+  </script>
+</head>
+<body>
+<textarea id="command"></textarea>
+<input type="button" onclick="submitButton()" value="Submit">
+</body>
+</html>
