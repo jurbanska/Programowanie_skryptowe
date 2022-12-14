@@ -1,0 +1,280 @@
+<html lang="en">
+<head>
+  <title> Bike Rental </title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+  <canvas id="canvas" width="300" height="300" style="border: 1px solid black"></canvas>
+
+  <script>
+    let bikes = [];
+    let scooters = [];
+    let rentedBikes = [];
+    let rentedScooters = [];
+
+    function addBike(brand, numBikes) {
+
+      for (let i = 0; i < numBikes; i++) {
+        let bike = {
+          brand: brand,
+          takenBy: null
+        }
+        bikes.push(bike);
+      }
+    }
+
+    function addScooter(brand, numScooters) {
+
+      for (let i = 0; i < numScooters; i++) {
+        let scooter = {
+          brand: brand,
+          takenBy: null
+        }
+        scooters.push(scooter);
+      }
+    }
+
+    function rentBike(name, brand) {
+
+      for (let i = 0; i < bikes.length; i++) {
+        if (bikes[i].brand === brand && bikes[i].takenBy === null) {
+          bikes[i].takenBy = name;
+          rentedBikes.push(bikes[i]);
+          console.log(name + " has rented a " + brand + " bike.");
+          decrementBikeInventory(brand);
+          updateChart();
+          break;
+        }
+      }
+    }
+
+    function rentScooter(name, brand) {
+
+      for (let i = 0; i < scooters.length; i++) {
+        if (scooters[i].brand === brand && scooters[i].takenBy === null) {
+          scooters[i].takenBy = name;
+          rentedScooters.push(scooters[i]);
+          console.log(name + " has rented a " + brand + " scooter.");
+          decrementScooterInventory(brand);
+          updateChart();
+          break;
+        }
+      }
+    }
+
+    function returnBike(name) {
+
+      for (let i = 0; i < rentedBikes.length; i++) {
+        if (rentedBikes[i].takenBy === name) {
+          let bike = rentedBikes.splice(i, 1);
+          bike[0].takenBy = null;
+          bikes.push(bike[0]);
+          console.log(name + " has returned the " + bike[0].brand + " bike.");
+          incrementBikeInventory(bike[0].brand);
+          updateChart();
+          break;
+        }
+      }
+    }
+
+    function returnScooter(name) {
+
+      for (let i = 0; i < rentedScooters.length; i++) {
+        if (rentedScooters[i].takenBy === name) {
+          let scooter = rentedScooters.splice(i, 1);
+          scooter[0].takenBy = null;
+          scooters.push(scooter[0]);
+          console.log(name + " has returned the " + scooter[0].brand + " scooter.");
+          incrementScooterInventory(scooter[0].brand);
+          updateChart();
+          break;
+        }
+      }
+    }
+
+    function showRenters() {
+
+      let renters = [];
+      for (let i = 0; i < rentedBikes.length; i++) {
+        renters.push(rentedBikes[i].takenBy);
+      }
+      for (let i = 0; i < rentedScooters.length; i++) {
+        renters.push(rentedScooters[i].takenBy);
+      }
+      console.log("Renters: " + renters);
+    }
+    function decrementBikeInventory(brand) {
+
+      for (let i = 0; i < bikes.length; i++) {
+        if (bikes[i].brand === brand) {
+          bikes.splice(i, 1);
+          break;
+        }
+      }
+    }
+
+    function decrementScooterInventory(brand) {
+
+      for (let i = 0; i < scooters.length; i++) {
+        if (scooters[i].brand === brand) {
+          scooters.splice(i, 1);
+          break;
+        }
+      }
+    }
+
+    function incrementBikeInventory(brand) {
+
+      let bike = {
+        brand: brand,
+        takenBy: null
+      }
+      bikes.push(bike);
+    }
+
+    function incrementScooterInventory(brand) {
+
+      let scooter = {
+        brand: brand,
+        takenBy: null
+      }
+      scooters.push(scooter);
+    }
+
+    let rentalStartTime;
+    let rentalEndTime;
+    function startRentalTimer(name, type, brand) {
+
+      rentalStartTime = Date.now();
+      if (type === "bike") {
+        rentBike(name, brand);
+      }
+      else if (type === "scooter") {
+        rentScooter(name, brand);
+      }
+    }
+
+    function endRentalTimer(name) {
+      rentalEndTime = Date.now();
+      let rentalDuration = rentalEndTime - rentalStartTime;
+      rentalDuration = rentalDuration/1000;
+      let cost = rentalDuration / 60 * 2.5;
+      console.log(name + " has rented for " + rentalDuration + "s" + " and it costed " + cost + "zl");
+      returnBike(name);
+      returnScooter(name);
+    }
+
+
+    function showAvailable() {
+      let bikeBrands = {};
+      let scooterBrands = {};
+
+      for (let i = 0; i < bikes.length; i++) {
+        if (bikeBrands[bikes[i].brand] === undefined) {
+          bikeBrands[bikes[i].brand] = 1;
+        } else {
+          bikeBrands[bikes[i].brand]++;
+        }
+      }
+      console.log("Bikes: ");
+      for (let brand in bikeBrands) {
+        console.log("Brand: " + brand + ", Number of bikes: " + bikeBrands[brand]);
+      }
+
+      for (let i = 0; i < scooters.length; i++) {
+        if (scooterBrands[scooters[i].brand] === undefined) {
+          scooterBrands[scooters[i].brand] = 1;
+        } else {
+          scooterBrands[scooters[i].brand]++;
+        }
+      }
+      console.log("Scooters: ");
+      for (let brand in scooterBrands) {
+        console.log("Brand: " + brand + ", Number of scooters: " + scooterBrands[brand]);
+      }
+    }
+
+    //Stan początkowy
+    addBike("Hiland", 10);
+    addBike("Indiana", 50);
+    addScooter("JIVR", 5);
+
+
+    //Obsługa komend
+    function submitButton () {
+      let cmd =  document.getElementById("command").value;
+      let cmds = cmd.split(" ");
+      if (cmds[0] === "rent") { //renting -> choose bike/scooter
+        let name = cmds[1];
+        let type = cmds[2];
+        let brand = cmds[3];
+        startRentalTimer(name, type, brand);
+      }
+      else if (cmds[0] === "return") { // returning vehicle + name
+        let name = cmds[1];
+        endRentalTimer(name);
+      }
+      else if (cmds[0] === "show"){ // showing renters
+        showRenters();
+      }
+      else if (cmds[0] === "available") { //checking what is available
+        showAvailable();
+      }
+    }
+
+
+    //Aktualizowanie wykresu po wypożyczeniu/zwróceniu
+    function updateChart() {
+      let totalBikes = bikes.length;
+      let totalScooters = scooters.length;
+      chart.data.datasets[0].data[0] = totalBikes;
+      chart.data.datasets[0].data[1] = totalScooters;
+      chart.update();
+    }
+
+    //Wykres
+    let canvas = document.getElementById("canvas");
+    let ctx = canvas.getContext("2d");
+    let totalBikes = bikes.length;
+    let totalScooters = scooters.length;
+
+    let data = {
+      labels: ["Bikes", "Scooters"],
+      datasets: [
+        {
+          data: [totalBikes, totalScooters],
+          backgroundColor: ["#36A2EB", "#FFCE56"],
+          hoverBackgroundColor: ["#36A2EB", "#FFCE56"]
+        }
+      ]
+    };
+
+    let options = {
+      legend: {
+        display: false
+      },
+      title: {
+        display: true,
+        text: "Availability"
+      },
+      responsive: true,
+      maintainAspectRatio: false
+    };
+
+    let chart = new Chart(ctx, {
+      type: 'bar',
+      data: data,
+      options: options
+    });
+
+  </script>
+</head>
+
+<body>
+<div>
+  <h1>Bike Rental</h1>
+  <h3>Rent a Bike or Scooter!</h3>
+</div>
+<textarea id="command"></textarea>
+<input type="button" onclick="submitButton()" value="Submit">
+</body>
+
+</html>
