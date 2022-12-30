@@ -2,15 +2,15 @@
 
 const fs = require('fs');
 
-const path = process.argv[2];
+const sciezka = process.argv[2];
 
-if (fs.existsSync(path)) {
-  const stat = fs.statSync(path);
+if (fs.existsSync(sciezka)) {
+  const stat = fs.statSync(sciezka);
   if (stat.isFile()) {
-    console.log(`'${path}' jest plikiem, a jego zawartością jest: ${fs.readFileSync(path, 'utf8')}`);
+    console.log(`'${sciezka}' jest plikiem, a jego zawartością jest: ${fs.readFileSync(sciezka, 'utf8')}`);
   } else if (stat.isDirectory()) {
-    console.log(`'${path}' jest katalogiem`);
+    console.log(`'${sciezka}' jest katalogiem`);
   }
 } else {
-  console.log(`'${path}' nie istnieje`);
+  console.log(`'${sciezka}' nie istnieje`);
 }
