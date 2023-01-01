@@ -1,0 +1,22 @@
+[
+  {
+    "operation": "add",
+    "x": 1,
+    "y": 2
+  },
+  {
+    "operation": "subtract",
+    "x": 4,
+    "y": 3
+  },
+  {
+    "operation": "multiply",
+    "x": 5,
+    "y": 6
+  },
+  {
+    "operation": "divide",
+    "x": 7,
+    "y": 8
+  }
+]
