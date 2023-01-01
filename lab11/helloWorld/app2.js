@@ -18,7 +18,6 @@ app.use(logger('dev'));                            // Add an HTTP request record
 
 // The first route
 app.get('/', function (req, res) {
-    const result = x + y;
     res.render('index',{x: x, y: y}); // Render the 'index' view
 });
 
