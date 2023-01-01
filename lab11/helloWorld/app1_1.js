@@ -14,29 +14,34 @@ app.use(logger('dev'));                            // Place an HTTP request reco
 // Add a new route to the application
 app.get('/json/:name', function (req, res) {
     const file = require(`./zad2.json`);
-    let response = '';
+    let response = '<table><tr><th>x</th><th>operation</th><th>y</th><th>result</th></tr>';
 
     for (let i = 0; i < file.length; i++) {
         const operation = file[i].operation;
         const x = file[i].x;
         const y = file[i].y;
+        let result;
 
         if (operation === 'add') {
-            response += `${x} + ${y} = ${x + y}<br/>`;
+            result = x + y;
         }
         else if (operation === 'subtract') {
-            response += `${x} - ${y} = ${x - y}<br/>`;
+            result = x - y;
         }
         else if (operation === 'multiply') {
-            response += `${x} * ${y} = ${x * y}<br/>`;
+            result = x * y;
         }
         else if (operation === 'divide') {
-            response += `${x} / ${y} = ${x / y}<br/>`;
+            result = x / y;
         }
         else {
-            response += 'Invalid operation<br/>';
+            result = 'Invalid operation';
         }
+
+        response += `<tr><td>${x}</td><td>${operation}</td><td>${y}</td><td>${result}</td></tr>`;
     }
+
+    response += '</table>';
 
     res.send(`
     <!DOCTYPE html>
@@ -55,6 +60,18 @@ app.get('/json/:name', function (req, res) {
         <main class="container">
         <h1>JSON Response</h1>
         <p>${response}</p>
+        <style>
+        table {
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }        
+        </style>
         </main>
         <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
